@@ -15,14 +15,14 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000","https://test-gfb.netlify.app"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
 
-app.use("/auth", authRoute);
+app.use("/api/v1/auth", authRoute);
 
-app.listen("5000", () => {
+app.listen("4000", () => {
   console.log("Server is running!");
 });
