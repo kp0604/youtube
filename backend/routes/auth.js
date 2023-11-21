@@ -16,6 +16,11 @@ router.get("/login/success", (req, res) => {
   }
 });
 
+router.get("/check", (req, res) => {
+  console.log('user',req.user)
+  res.status(200).json({status:'working'})
+});
+
 router.get("/login/failed", (req, res) => {
   res.status(401).json({
     success: false,
