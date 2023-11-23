@@ -18,7 +18,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/v1/auth/google/callback",
+      callbackURL: "https://youtube-production-616c.up.railway.app/api/v1/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       done(null, profile);
