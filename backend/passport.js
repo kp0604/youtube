@@ -13,12 +13,15 @@ GITHUB_CLIENT_SECRET = "your id";
 FACEBOOK_APP_ID = "989322625488978";
 FACEBOOK_APP_SECRET = "b98e04564b07b8f22c2ebce9882900d5";
 
+// let url = "http://localhost:4000"
+let url = "https://youtube-production-616c.up.railway.app"
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://youtube-production-616c.up.railway.app/api/v1/auth/google/callback",
+      callbackURL:  `${url}/api/v1/auth/google/callback`,
     },
     function (accessToken, refreshToken, profile, done) {
       done(null, profile);

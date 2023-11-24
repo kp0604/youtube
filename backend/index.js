@@ -15,7 +15,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: ["https://test-gfb.netlify.app"],
+    origin: ["https://test-gfb.netlify.app","http://localhost:3000"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })

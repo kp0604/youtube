@@ -10,8 +10,10 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    // let url = "http://localhost:4000"
+let url = "https://youtube-production-616c.up.railway.app"
     const getUser = () => {
-      fetch("https://youtube-production-616c.up.railway.app/api/v1/auth/login/success", {
+      fetch(`${url}/api/v1/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
