@@ -17,8 +17,6 @@ let url = "https://youtube-production-616c.up.railway.app"
         method: "GET",
         credentials: "include",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
         },
       })

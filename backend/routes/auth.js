@@ -14,6 +14,11 @@ router.get("/login/success", (req, res) => {
       //   cookies: req.cookies
     });
   }
+  else{
+    res.status(200).json({
+      success:false
+    })
+  }
 });
 
 router.get("/check", (req, res) => {
