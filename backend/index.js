@@ -1,24 +1,19 @@
-const cookieSession = require("cookie-session");
 const express = require("express");
 const cors = require("cors");
-const passportSetup = require("./passport");
+const session = require("express-session");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
-const app = express();
+require("./passport"); // Assuming passport configuration is in this file
 
-// app.use(
-//   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-// );
+const app = express();
 
 app.use(
   cors({
-    origin: ["https://test-gfb.netlify.app","http://localhost:3000"],
+    origin: ["https://test-gfb.netlify.app", "http://localhost:3000"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
-
-// app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -28,21 +23,22 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7 // One Week
-    }
-  }))
+      maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
+    },
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/v1/auth", authRoute);
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 const port = process.env.PORT || 4000;
 
-app.listen(port,"0.0.0.0", () => {
+app.listen(port, "0.0.0.0", () => {
   console.log("Server is running!");
 });
