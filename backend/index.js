@@ -7,6 +7,8 @@ require("./passport"); // Assuming passport configuration is in this file
 
 const app = express();
 
+app.use(express.json());
+
 app.use(
   cors({
     origin: ["https://test-gfb.netlify.app", "http://localhost:3000"],

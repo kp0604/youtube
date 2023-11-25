@@ -16,6 +16,14 @@ FACEBOOK_APP_SECRET = "b98e04564b07b8f22c2ebce9882900d5";
 // let url = "http://localhost:4000"
 let url = "https://youtube-production-616c.up.railway.app"
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -54,11 +62,3 @@ passport.use(
     }
   )
 );
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
