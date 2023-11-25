@@ -10,6 +10,13 @@ const app = express();
 app.use(express.json());
 
 app.use(
+  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(
   cors({
     origin: ["https://test-gfb.netlify.app", "http://localhost:3000"],
     methods: "GET,POST,PUT,DELETE",
@@ -17,21 +24,18 @@ app.use(
   })
 );
 
-app.use(
-  session({
-    secret: "secretcode",
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
-    },
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(
+//   session({
+//     secret: "secretcode",
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: {
+//       sameSite: "none",
+//       secure: true,
+//       maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
+//     },
+//   })
+// );
 
 app.use("/api/v1/auth", authRoute);
 
