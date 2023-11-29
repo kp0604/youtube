@@ -3,18 +3,10 @@ const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
-require("./passport"); // Assuming passport configuration is in this file
 
 const app = express();
 
 app.use(express.json());
-
-app.use(
-  cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(
   cors({
@@ -25,17 +17,28 @@ app.use(
 );
 
 // app.use(
-//   session({
-//     secret: "secretcode",
-//     resave: true,
-//     saveUninitialized: true,
-//     cookie: {
-//       sameSite: "none",
-//       secure: true,
-//       maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
-//     },
-//   })
+//   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
 // );
+
+app.set("trust proxy", 1);
+
+app.use(
+  session({
+    secret: "secretcode",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require("./passport");
 
 app.use("/api/v1/auth", authRoute);
 
