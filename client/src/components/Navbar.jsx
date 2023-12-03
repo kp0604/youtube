@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const Navbar = ({ user }) => {
-  // let url = "http://localhost:4000"
-let url = "https://youtube-production-616c.up.railway.app"
+  let url = "http://localhost:4000"
+// let url = "https://youtube-production-616c.up.railway.app"
   const logout = () => {
     window.open(`${url}/api/v1/auth/logout`, "_self");
   };
