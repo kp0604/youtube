@@ -3,8 +3,8 @@ import Facebook from "../img/facebook.png";
 import Github from "../img/github.png";
 
 const Login = () => {
-  let url = "http://localhost:4000"
-// let url = "https://youtube-production-616c.up.railway.app"
+  // let url = "http://localhost:4000"
+let url = "https://youtube-production-616c.up.railway.app"
   const google = () => {
     window.open(`${url}/api/v1/auth/google`, "_self");
   };
